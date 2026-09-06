@@ -183,16 +183,16 @@ const finalScreen = document.getElementById('final-screen');
 const finalText = document.getElementById('final-text');
 
 const letterLines = [
-    "I didn't make this to impress you.",
-    "I just wanted to make you a place that feels a little like the conversations we have.",
-    "The music.",
-    "The rain.",
-    "The stupid little jokes.",
-    "The conversations that somehow reach 3 AM.",
-    "I don't know exactly what this is going to become.",
-    "I just know that talking to you has become one of my favourite parts of my days.",
-    "So...",
-    "come in whenever the world gets a little too loud.",
+    "I used to think movies exaggerated how it feels to find someone who just gets you.",
+    "But then we started talking.",
+    "The 3 AM texts... the Ilayaraja melodies... the way my chaotic mind just goes completely quiet when I'm with you.",
+    "Enakku eppadi solradhu nu therila...",
+    "But every single day, I catch myself waiting for your name to pop up on my screen.",
+    "You've unknowingly become my safe place.",
+    "So, I wanted to build one for you.",
+    "Whenever the world gets too heavy, or you just need to breathe...",
+    "Inge vandhudu.",
+    "I'll keep the coffee warm. And I'll always be right here.",
     "— your 🦇 man"
 ];
 
