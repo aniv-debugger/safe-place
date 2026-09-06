@@ -1,232 +1,65 @@
-/* Reset everything */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+/* --- THE NEW FEATURES --- */
 
-body {
-    background-color: #050505;
-    overflow: hidden; /* Stops ugly scrollbars */
-    font-family: 'Georgia', serif;
-}
-
-/* Master Container */
-.scene-container {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-}
-
-/* Layer 1: Video */
-.bg-video {
+/* 7. The Secret Button */
+#dont-click-btn {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 1;
-}
-
-/* Layer 2: The Desk */
-.room-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 2;
-    pointer-events: none; 
-}
-
-/* Layer 3: The Hotspots */
-.hotspot {
-    position: absolute;
-    z-index: 3;
+    bottom: 20px;
+    left: 20px;
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 0.8rem;
+    font-family: monospace;
     cursor: pointer;
-    border-radius: 8px;
     transition: all 0.3s ease;
+    z-index: 100;
+}
+#dont-click-btn:hover {
+    color: rgba(255, 255, 255, 0.8);
 }
 
-.hotspot:hover {
-    background: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 0 15px rgba(255, 215, 0, 0.2); 
-}
-
-/* UPDATED POSITIONS */
-#hotspot-speaker { top: 57%; left: 33%; width: 8%; height: 12%; }
-#hotspot-coffee { top: 59%; left: 48%; width: 4%; height: 7%; }
-#hotspot-book { top: 59%; left: 54%; width: 10%; height: 10%; }
-#hotspot-lamp { top: 38%; left: 63%; width: 9%; height: 12%; } 
-
-/* Popup Modal Styling */
-.modal {
+/* 8. The Final Letter */
+#final-door {
     position: absolute;
-    top: 0; left: 0; width: 100vw; height: 100vh;
-    background: rgba(0, 0, 0, 0.85);
-    z-index: 10;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #e0d8c8;
-}
-
-.hidden {
-    display: none;
-}
-
-.modal-content {
-    background: #1a1512; 
-    padding: 50px;
-    border-radius: 4px;
-    text-align: center;
-    border: 1px solid #4a3b32;
-    box-shadow: 0 0 30px rgba(0,0,0,0.8);
-}
-
-.modal-content h2 {
-    margin-bottom: 20px;
-    font-style: italic;
-    color: #d4af37; 
-}
-
-.poem-text {
-    line-height: 2;
-    font-size: 1.2rem;
-}
-
-.close-btn {
-    position: absolute;
-    top: 15px; right: 25px;
-    font-size: 28px;
-    cursor: pointer;
-    color: #888;
-}
-
-.close-btn:hover {
-    color: #fff;
-}
-
-/* --- NEW CINEMATIC FEATURES --- */
-
-/* 1. Interactive Opening Credits */
-#opening-credits {
-    position: absolute;
-    inset: 0;
-    background: #050505;
-    color: #d4af37;
-    z-index: 50;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    transition: opacity 2s ease, visibility 2s ease;
-    cursor: pointer;
-}
-
-#opening-credits .titles h2 {
-    font-style: italic;
-    letter-spacing: 2px;
-    margin-bottom: 10px;
-    text-align: center;
-}
-
-#opening-credits .batman-subtitle {
-    font-size: 1rem;
-    color: #888;
-    text-align: center;
-    font-weight: normal;
-    opacity: 0;
-    animation: fadeInSub 2s ease 1.5s forwards; /* Fades in 1.5s later */
-}
-
-#opening-credits .enter-prompt {
-    position: absolute;
-    bottom: 20%;
+    bottom: 20px;
+    right: 30px;
+    color: rgba(255, 255, 255, 0.4);
     font-size: 0.9rem;
-    color: #555;
-    letter-spacing: 1px;
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    cursor: pointer;
+    transition: color 0.3s;
+    z-index: 100;
+}
+#final-door:hover { 
+    color: white; 
+}
+
+#final-screen {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: black;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     opacity: 0;
-    animation: fadeInSub 2s ease 3.5s forwards; /* Fades in 3.5s later */
+    pointer-events: none;
+    transition: opacity 2s ease;
 }
-
-@keyframes fadeInSub {
-    to { opacity: 1; }
+#final-screen.active {
+    opacity: 1;
+    pointer-events: all;
 }
-
-/* This class gets added by JavaScript when she clicks */
-.fade-out {
-    opacity: 0 !important;
-    visibility: hidden !important;
-}
-
-/* 2. Interactive Lamp (Darkness Layer) */
-#ambient-darkness {
-    position: absolute;
-    inset: 0;
-    background: rgba(4, 8, 15, 0.7); 
-    z-index: 1; 
+#final-text {
+    color: white;
+    font-size: 1.5rem;
+    font-family: 'Georgia', serif;
+    text-align: center;
+    max-width: 80%;
+    line-height: 1.8;
     opacity: 0;
     transition: opacity 1.5s ease;
-    pointer-events: none;
-}
-body.lights-out #ambient-darkness {
-    opacity: 1;
 }
 
-/* 3. The Typewriter / Line Fade Effect */
-.poem-text p {
-    opacity: 0;
-    transform: translateY(10px);
-}
-#poem-modal:not(.hidden) .poem-text p {
-    animation: revealLine 1.5s ease forwards;
-}
-#poem-modal:not(.hidden) .poem-text p:nth-child(1) { animation-delay: 0.5s; }
-#poem-modal:not(.hidden) .poem-text p:nth-child(2) { animation-delay: 1.5s; }
-#poem-modal:not(.hidden) .poem-text p:nth-child(3) { animation-delay: 2.5s; }
-#poem-modal:not(.hidden) .poem-text p:nth-child(4) { animation-delay: 3.5s; }
-#poem-modal:not(.hidden) .poem-text p:nth-child(5) { animation-delay: 4.5s; }
-
-@keyframes revealLine {
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* 4. THE DISTANT BAT-SIGNAL */
-#hotspot-sky { 
-    top: 20%; 
-    left: 28%; 
-    width: 35px; 
-    height: 35px; 
-    border-radius: 50%; 
-    background: rgba(255, 235, 100, 0.15); 
-    box-shadow: 0 0 15px rgba(255, 235, 100, 0.4); 
-    pointer-events: auto;
-    animation: signalPulse 3s infinite alternate ease-in-out; 
-}
-
-@keyframes signalPulse {
-    0% { opacity: 0.2; transform: scale(0.8); }
-    100% { opacity: 0.7; transform: scale(1.2); box-shadow: 0 0 25px rgba(255, 235, 100, 0.6); }
-}
-
-/* 5. The Starry Night Wall Painting */
-#hotspot-painting { 
-    top: 22%; 
-    left: 78%; /* Hangs on the right side of the wall */
-    width: 10%; 
-    height: auto;
-    border: 4px solid #1a120f; /* Dark wood frame */
-    box-shadow: 3px 5px 15px rgba(0,0,0,0.6);
-    transform: rotate(3deg); /* Slightly tilted on the wall for realism */
-    padding: 0;
-}
-#hotspot-painting img {
-    opacity: 0.7; /* Dimmed slightly by the dark room */
-    transition: opacity 0.4s ease;
-}
-#hotspot-painting:hover img {
-    opacity: 1; /* Illuminates when she hovers over it! */
+#radio-next-btn:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
 }
